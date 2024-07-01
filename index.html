@@ -1,3 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            background-color: gray;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .app-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            background-image: url('your-image-url.jpg');
+            background-size: cover;
+        }
+        .app-title {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="https://cdn.freebiesupply.com/logos/large/2x/github-icon-logo-png-transparent.png"></div>
+        <div class="Github">App 1</div>
+    </div>
+    <div class="app-container">
+        <div class="app-image"></div>
+        <div class="app-title">App 2</div>
+    </div>
+    <!-- Add more app containers as needed -->
+</body>
+</html>
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
