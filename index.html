@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://htmlcolorcodes.com/assets/images/colors/dark-green-color-solid-background-1920x1080.png');
+}
+
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* make sure the login screen is on top of everything else */
+}
+
+.login-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 25px;
+  border: none;
+}
+
+.login-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 25px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* ...existing styles... */
+</style>
+</head>
+<body>
+
+<div class="login-container" id="login-container">
+  <div class="login-form">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" value="Login" onclick="login()">
+  </div>
+</div>
+
+<!-- ...existing elements... -->
+
+<script>
+function login() {
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  if (username === 'Secret' && password === 'Search') {
+    document.getElementById('login-container').style.display = 'none';
+  } else {
+    alert('Invalid username or password!');
+  }
+}
+
+/* ...existing scripts... */
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://www.fusionconnect.com/hubfs/images/blog/teams-backgrounds/22-AI-Generated-Background-For-Microsoft-Teams-meeting.png');
+}
+
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  transition: width 0.5s ease;
+}
+
+.search-bar:hover {
+  width: 60%;
+}
+
+.search-bar:focus {
+  width: 100%;
+}
+
+.search-button {
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+}
+
+.copyright {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+}
+
+#search-results {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+  display: none;
+}
+
+#close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+#tabs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.tab {
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 25px; /* make tabs rounded */
+  width: 100px; /* make tabs wider */
+  position: relative; /* make the tab a relative container for the close button */
+}
+
+.close-tab {
+  position: absolute;
+  top: -10px; /* move the close button to the top of the tab */
+  right: -10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#add-tab {
+  margin-left: auto;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 25px; /* make add-tab button rounded */
+  width: 100px; /* make add-tab button wider */
+}
+</style>
+</head>
+<body>
+
+<div class="time-display" id="time"></div>
+
+<div class="toolbar">
+  <input type="text" class="search-bar" id="search" placeholder="Search...">
+  <button class="search-button" onclick="search()">Search</button>
+</div>
+
+<div class="copyright">
+  Copyright 2024 Secret Services
+</div>
+
+<iframe id="search-results"></iframe>
+<div id="close-button" onclick="closeSearch()">X</div>
+
+<div id="tabs">
+  <div class="tab" onclick="openTab('<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Search</title>
+</head>
+<body>
+    <input type="text" id="searchInput" placeholder="Enter your search query">
+    <button onclick="performSearch()">Search</button>
+
+    <script>
+        function performSearch() {
+            const searchQuery = encodeURIComponent(document.getElementById('searchInput').value);
+            const bingUrl = `https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn?q=${searchQuery}`;
+            window.open(bingUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
+')">
+    Bing
+    <div class="close-tab" onclick="event.stopPropagation(); closeTab(this.parentNode);">X</div>
+  </div>
+  <div id="add-tab" onclick="addTab()">+</div>
+</div>
+
+<script>
+var tabCount = 1;
+
+function search() {
+  if (tabCount < 8) {
+    var query = document.getElementById('search').value;
+    var tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.textContent = query;
+    tab.style.backgroundColor = getRandomColor(); /* make tabs come out in a different color each time */
+    tab.onclick = function() { openTab('https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn' + query) };
+
+    var closeButton = document.createElement('div');
+    closeButton.className = 'close-tab';
+    closeButton.textContent = 'X';
+    closeButton.onclick = function(event) {
+      event.stopPropagation();
+      closeTab(tab);
+    };
+
+    tab.appendChild(closeButton);
+    document.getElementById('tabs').insertBefore(tab, document.getElementById('add-tab'));
+    tabCount++;
+
+    openTab('https://www.bing.com/search?q=' + query);
+  }
+}
+
+function closeSearch() {
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('close-button').style.display = 'none';
+}
+
+function updateTime() {
+  var now = new Date();
+  var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+  document.getElementById('time').innerHTML = time;
+}
+
+function openTab(url) {
+  document.getElementById('search-results').src = url;
+  document.getElementById('search-results').style.display = 'block';
+  document.getElementById('close-button').style.display = 'block';
+}
+
+function addTab() {
+  if (tabCount < 8) {
+    var tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.textContent = 'New Tab';
+    tab.style.backgroundColor = getRandomColor(); /* make tabs come out in a different color each time */
+    tab.onclick = function() { openTab('https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') };
+
+    var closeButton = document.createElement('div');
+    closeButton.className = 'close-tab';
+    closeButton.textContent = 'x';
+    closeButton.onclick = function(event) {
+      event.stopPropagation();
+      closeTab(tab);
+    };
+
+    tab.appendChild(closeButton);
+    document.getElementById('tabs').insertBefore(tab, document.getElementById('add-tab'));
+    tabCount++;
+  }
+}
+
+function closeTab(tab) {
+  tab.parentNode.removeChild(tab);
+  tabCount--;
+  if (tabCount === 0) {
+    closeSearch();
+  }
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+setInterval(updateTime, 1000);
+</script>
+
+</body>
+</html>
