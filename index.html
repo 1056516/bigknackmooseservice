@@ -13,6 +13,8 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative;
+            z-index: 1;
         }
         .movie-container {
             display: flex;
@@ -22,7 +24,8 @@
             overflow-x: auto;
             max-width: 100%;
             height: 100%;
-            position: relative;
+            position: absolute;
+            z-index: 0;
         }
         .movie {
             margin: 10px;
@@ -44,7 +47,7 @@
         <div class="movie" data-url="https://rubyarcade.pages.dev/static/rubyarcade/hvtrs8%2F-nmw%2Cge%2Fcprs-ilngrqlmtj-nla%2F6067-aoolg%2Fuq.jtol">
             <img src="https://lh3.googleusercontent.com/proxy/bu2G6c25KLVhqZqy3jO2wwsDj9s3kV7CjO9nCpffd2XbWqRu2Ap31dk5V8cuzg5nggTtHNmJaNphz-RNtAS-9F4ZLk4PdOvxgXhLz_iZEBedZQ" alt="Movie 4">
         </div>
-        <div class="movie" data-url="idontcare000.netlify.app">
+        <div class="movie" data-url="flixify000.netlify.app">
             <img src="https://i.ibb.co/8svsSyD/Typing-6.png" alt="Movie 5">
         </div>
         <!-- Add more movie divs with different URLs and titles -->
