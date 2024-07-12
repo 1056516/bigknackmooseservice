@@ -53,6 +53,25 @@
         <!-- Add more movie divs with different URLs and titles -->
     </div>
 
+    <script>
+        // Function to open movies in fullscreen mode
+        function openMovie(url) {
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.id = 'movieFrame';
+            iframe.frameBorder = 0;
+            iframe.scrolling = 'no';
+            iframe.style.width = '100vw';
+            iframe.style.height = '100vh';
+            iframe.style.position = 'fixed';
+            iframe.style.top = 0;
+            iframe.style.left = 0;
+            iframe.style.zIndex = 1000;
+
+            document.body.appendChild(iframe);
+            iframe.requestFullscreen();
+        }
+
         // Event listener for clicking on movie thumbnails
         const movieThumbnails = document.querySelectorAll('.movie');
         movieThumbnails.forEach((thumbnail) => {
