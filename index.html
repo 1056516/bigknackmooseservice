@@ -97,36 +97,42 @@
 
     <!-- Add more game boxes as needed -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Launcher</title>
+</head>
+<body>
     <div class="game-content" id="gameContent">
-        <h1 id="gameTitle">Roblox | click to play</h1>
+        <h1 id="gameTitle">Roblox</h1>
+        <button onclick="openGame('Roblox', 'https://www.roblox.com/')">Play</button>
     </div>
 
     <div class="game-content" id="gameContent">
         <h1 id="gameTitle">Discord</h1>
+        <button onclick="openGame('Discord', 'https://www.discord.com/')">Open</button>
     </div>
 
     <div class="game-content" id="gameContent">
         <h1 id="gameTitle">Tiktok</h1>
+        <button onclick="openGame('Tiktok', 'https://www.tiktok.com/')">Launch</button>
     </div>
 
     <div class="game-content" id="gameContent">
-        <h1 id="gameTitle">Among us</h1>
+        <h1 id="gameTitle">Among Us</h1>
+        <button onclick="openGame('Among Us', 'https://www.innersloth.com/gameAmongUs.php')">Play Now</button>
     </div>
 
     <div class="game-content" id="gameContent">
         <h1 id="gameTitle">Fortnite</h1>
-    </div>
-    
-    <div class="game-content" id="gameContent">
-        <h1 id="gameTitle">Flixify</h1>
+        <button onclick="openGame('Fortnite', 'https://www.epicgames.com/fortnite/')">Start</button>
     </div>
 
     <script>
         function openGame(title, url) {
-            document.getElementById('gameTitle').innerText = title;
-            document.getElementById('gameContent').style.display = 'flex';
-            document.querySelectorAll('.game-box').forEach(box => box.style.display = 'none');
-            window.location.replace(url);
+            window.location.href = url;
         }
     </script>
 </body>
