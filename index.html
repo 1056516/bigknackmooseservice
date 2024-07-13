@@ -217,7 +217,16 @@ function login() {
             const query = document.querySelector('.search-bar').value;
             const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/;
             const searchUrl = urlPattern.test(query) ? (query.startsWith('http') ? query : 'http://' + query) : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-            document.querySelector('.content.active iframe').src = searchUrl;
+            
+            fetch(searchUrl, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        document.querySelector('.content.active iframe').src = searchUrl;
+                    } else {
+                        alert('Domain not existing');
+                    }
+                })
+                .catch(() => alert('Domain not existing'));
         }
 
         function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
