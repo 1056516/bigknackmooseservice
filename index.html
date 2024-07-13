@@ -343,62 +343,6 @@ body {
     <div class="tab-bar">
         <div class="add-tab" onclick="addTab()">+</div>
     </div>
-    <div class="header">
-        <div class="logo">
-            <!-- Place your logo here -->
-            <img src="your-logo-url.png" alt="Logo">
-        </div>
-        <div class="title">Access Unblocker</div>
-        <div class="subtitle">FREE INTERNET BROWSING</div>
-    </div>
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Enter your query here">
-        <button class="go-button" onclick="performSearch()">GO</button>
-    </div>
-    <div class="content-container"></div>
-
-    <script>
-        let tabCounter = 0;
-
-        function performSearch() {
-            const query = document.querySelector('.search-bar').value;
-            const searchUrl = query.startsWith('http') ? query : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-            addTab(query, searchUrl);
-        }
-
-        function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
-            tabCounter++;
-            const tabId = `tab-${tabCounter}`;
-            const tab = document.createElement('div');
-            tab.className = 'tab';
-            tab.id = tabId;
-            tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
-            tab.onclick = () => switchTab(tabId, url);
-            document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
-
-            const content = document.createElement('div');
-            content.className = 'content';
-            content.id = `content-${tabId}`;
-            content.innerHTML = `<iframe src="${url}"></iframe>`;
-            document.querySelector('.content-container').appendChild(content);
-
-            switchTab(tabId, url);
-        }
-
-        function switchTab(tabId, url) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById(`content-${tabId}`).classList.add('active');
-        }
-
-        function closeTab(tabId) {
-            document.getElementById(tabId).remove();
-            document.getElementById(`content-${tabId}`).remove();
-        }
-    </script>
-</body>
-</html>
 
     <!DOCTYPE html>
 <html lang="en">
