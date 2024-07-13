@@ -84,7 +84,7 @@ function login() {
 /* ...existing scripts... */
 </script>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -215,7 +215,8 @@ function login() {
 
         function performSearch() {
             const query = document.querySelector('.search-bar').value;
-            const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+            const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/;
+            const searchUrl = urlPattern.test(query) ? (query.startsWith('http') ? query : 'http://' + query) : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
             document.querySelector('.content.active iframe').src = searchUrl;
         }
 
@@ -269,6 +270,7 @@ function login() {
     </script>
 </body>
 </html>
+
 
 
 
