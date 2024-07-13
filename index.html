@@ -197,7 +197,7 @@ function login() {
 /* ...existing scripts... */
 </script>
 
-    <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -259,6 +259,7 @@ function login() {
             display: flex;
             flex-direction: column;
             margin-top: 50px; /* Adjust this value based on the height of your tab-bar */
+            margin-bottom: 50px; /* Adjust this value based on the height of your toolbar */
         }
         .content {
             flex-grow: 1;
@@ -269,7 +270,7 @@ function login() {
         }
         iframe {
             width: 100%;
-            height: calc(100% - 50px); /* Adjust this value based on the height of your toolbar */
+            height: 100%;
             border: none;
         }
         .toolbar {
@@ -329,7 +330,7 @@ function login() {
         function performSearch() {
             const query = document.querySelector('.search-bar').value;
             const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-            window.location.href = searchUrl;
+            document.querySelector('.content.active iframe').src = searchUrl;
         }
 
         function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
@@ -382,6 +383,7 @@ function login() {
     </script>
 </body>
 </html>
+
 
 
 
