@@ -127,6 +127,7 @@ function login() {
         .tab.active {
             background-color: white;
             border-bottom: 1px solid white;
+            animation: glow 1s infinite alternate;
         }
         .tab .close {
             margin-left: 10px;
@@ -199,6 +200,23 @@ function login() {
         .search-button:hover {
             background-color: green;
         }
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+            }
+            25% {
+                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+            }
+            50% {
+                box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff, 0 0 40px #0000ff;
+            }
+            75% {
+                box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00;
+            }
+            100% {
+                box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            }
+        }
     </style>
 </head>
 <body>
@@ -214,7 +232,6 @@ function login() {
     <script>
         let tabCounter = 0;
         const maxTabs = 100;
-        let glowInterval;
 
         function performSearch() {
             const query = document.querySelector('.search-bar').value;
@@ -236,7 +253,7 @@ function login() {
             }
         }
 
-        function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
+        function addTab(title = 'open tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
             if (tabCounter >= maxTabs) {
                 alert('Tab limit reached');
                 return;
@@ -246,7 +263,6 @@ function login() {
             const tab = document.createElement('div');
             tab.className = 'tab';
             tab.id = tabId;
-            tab.style.backgroundColor = getRandomColor();
             tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
             tab.onclick = () => switchTab(tabId, url);
             document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
@@ -265,29 +281,11 @@ function login() {
             document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             document.getElementById(`content-${tabId}`).classList.add('active');
-            startGlowEffect(tabId);
         }
 
         function closeTab(tabId) {
             document.getElementById(tabId).remove();
             document.getElementById(`content-${tabId}`).remove();
-            clearInterval(glowInterval);
-        }
-
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function startGlowEffect(tabId) {
-            clearInterval(glowInterval);
-            glowInterval = setInterval(() => {
-                document.getElementById(tabId).style.backgroundColor = getRandomColor();
-            }, 1000);
         }
 
         // Initialize with the first tab
@@ -295,6 +293,7 @@ function login() {
     </script>
 </body>
 </html>
+
 
     <!DOCTYPE html>
 <html lang="en">
