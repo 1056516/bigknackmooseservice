@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-image: url('https://i.ibb.co/HBwb4WH/Title-3.png');
+  background-image: url('https://t3.ftcdn.net/jpg/04/34/64/30/360_F_434643070_sELSNsUjw40j38zBy8URAYbvK1dhLxl3.jpg');
 }
 
 .login-container {
@@ -91,7 +91,7 @@ function login() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlAYeRVPN</title>
+    <title>PlayerVPN</title>
     <style>
         html, body {
             height: 100%;
@@ -102,7 +102,7 @@ function login() {
         .tab-bar {
             display: flex;
             align-items: center;
-            background-color: white;
+            background-color: blue;
             border-bottom: 1px solid #ccc;
             padding: 5px;
             overflow-x: auto;
@@ -190,14 +190,14 @@ function login() {
         .search-button {
             padding: 10px 20px;
             margin-left: 10px;
-            background-color: orange;
+            background-color: red;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         .search-button:hover {
-            background-color: red;
+            background-color: green;
         }
     </style>
 </head>
@@ -213,22 +213,26 @@ function login() {
 
     <script>
         let tabCounter = 0;
-        const maxTabs = 50;
+        const maxTabs = 100;
 
         function performSearch() {
             const query = document.querySelector('.search-bar').value;
             const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/;
             const searchUrl = urlPattern.test(query) ? (query.startsWith('http') ? query : 'http://' + query) : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
             
-            fetch(searchUrl, { method: 'HEAD' })
-                .then(response => {
-                    if (response.ok) {
-                        document.querySelector('.content.active iframe').src = searchUrl;
-                    } else {
-                        alert('Domain not existing');
-                    }
-                })
-                .catch(() => alert('Domain not existing'));
+            if (urlPattern.test(query)) {
+                fetch(searchUrl, { method: 'HEAD' })
+                    .then(response => {
+                        if (response.ok) {
+                            document.querySelector('.content.active iframe').src = searchUrl;
+                        } else {
+                            alert('Domain not existing');
+                        }
+                    })
+                    .catch(() => alert('Domain not existing'));
+            } else {
+                document.querySelector('.content.active iframe').src = searchUrl;
+            }
         }
 
         function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
