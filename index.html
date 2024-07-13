@@ -120,6 +120,7 @@ function login() {
             cursor: pointer;
             display: flex;
             align-items: center;
+            position: relative;
         }
         .tab:hover {
             background-color: #ddd;
@@ -220,7 +221,7 @@ function login() {
     </style>
 </head>
 <body>
-    <div class="tab-bar">
+    <div class="tab-bar" ondblclick="addTab()">
         <div class="add-tab" onclick="addTab()">+</div>
     </div>
     <div class="content-container"></div>
@@ -232,6 +233,7 @@ function login() {
     <script>
         let tabCounter = 0;
         const maxTabs = 100;
+        let draggedTab = null;
 
         function performSearch() {
             const query = document.querySelector('.search-bar').value;
@@ -263,8 +265,13 @@ function login() {
             const tab = document.createElement('div');
             tab.className = 'tab';
             tab.id = tabId;
+            tab.draggable = true;
             tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
             tab.onclick = () => switchTab(tabId, url);
+            tab.ondragstart = dragStart;
+            tab.ondragover = dragOver;
+            tab.ondrop = drop;
+            tab.ondragend = dragEnd;
             document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
 
             const content = document.createElement('div');
@@ -288,11 +295,45 @@ function login() {
             document.getElementById(`content-${tabId}`).remove();
         }
 
+        function dragStart(event) {
+            draggedTab = event.target;
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            if (event.target.classList.contains('tab') && event.target !== draggedTab) {
+                const tabBar = document.querySelector('.tab-bar');
+                const tabs = Array.from(tabBar.querySelectorAll('.tab'));
+                const draggedIndex = tabs.indexOf(draggedTab);
+                const targetIndex = tabs.indexOf(event.target);
+                if (draggedIndex > targetIndex) {
+                    tabBar.insertBefore(draggedTab, event.target);
+                } else {
+                    tabBar.insertBefore(draggedTab, event.target.nextSibling);
+                }
+            }
+        }
+
+        function dragEnd(event) {
+            const tabBar = document.querySelector('.tab-bar');
+            if (!tabBar.contains(event.target)) {
+                tabBar.appendChild(draggedTab);
+            }
+            draggedTab = null;
+        }
+
         // Initialize with the first tab
         addTab('Rammerhead', 'https://this-is-my.isellkids.store');
     </script>
 </body>
 </html>
+
 
 
     <!DOCTYPE html>
