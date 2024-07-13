@@ -197,89 +197,24 @@ function login() {
 /* ...existing scripts... */
 </script>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-image: url('https://t3.ftcdn.net/jpg/04/34/64/30/360_F_434643070_sELSNsUjw40j38zBy8URAYbvK1dhLxl3.jpg')}
-
-.toolbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: blue;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-bar {
-  width: 50%;
-  padding: 10px;
-  border-radius: 25px;
-  border: none;
-  transition: width 0.5s ease;
-}
-
-.search-bar:hover {
-  width: 60%;
-}
-
-.search-bar:focus {
-  width: 100%;
-}
-
-.search-button {
-  margin-left: 10px;
-  padding: 10px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-}
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-  
-
-.copyright {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 10px;
-}
-
-#search-results {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  width: 100%;
-  height: 90%;
-  overflow: auto;
-  display: none;
-}
-
-#close-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  cursor: pointer;
-  display: none;
-}
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Unblocker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
         .tab-bar {
             display: flex;
             align-items: center;
-            background-color: #f1f1f1;
+            background-color: blue;
             border-bottom: 1px solid #ccc;
             padding: 5px;
             overflow-x: auto;
@@ -334,8 +269,46 @@ body {
         }
         iframe {
             width: 100%;
-            height: 100%;
+            height: calc(100% - 50px); /* Adjust this value based on the height of your toolbar */
             border: none;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ccc;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .search-bar:hover {
+            width: 320px;
+        }
+        .search-bar:focus {
+            width: 100%;
+        }
+        .search-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: darkorange;
         }
     </style>
 </head>
@@ -343,6 +316,76 @@ body {
     <div class="tab-bar">
         <div class="add-tab" onclick="addTab()">+</div>
     </div>
+    <div class="content-container"></div>
+    <div class="toolbar">
+        <input type="text" class="search-bar" placeholder="PlayerVPN, use tabs to unblock chrome">
+        <button class="search-button" onclick="performSearch()">Search</button>
+    </div>
+
+    <script>
+        let tabCounter = 0;
+        const maxTabs = 10;
+
+        function performSearch() {
+            const query = document.querySelector('.search-bar').value;
+            const searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+            window.location.href = searchUrl;
+        }
+
+        function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
+            if (tabCounter >= maxTabs) {
+                alert('Tab limit reached');
+                return;
+            }
+            tabCounter++;
+            const tabId = `tab-${tabCounter}`;
+            const tab = document.createElement('div');
+            tab.className = 'tab';
+            tab.id = tabId;
+            tab.style.backgroundColor = getRandomColor();
+            tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
+            tab.onclick = () => switchTab(tabId, url);
+            document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
+
+            const content = document.createElement('div');
+            content.className = 'content';
+            content.id = `content-${tabId}`;
+            content.innerHTML = `<iframe src="${url}"></iframe>`;
+            document.querySelector('.content-container').appendChild(content);
+
+            switchTab(tabId, url);
+        }
+
+        function switchTab(tabId, url) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(`content-${tabId}`).classList.add('active');
+        }
+
+        function closeTab(tabId) {
+            document.getElementById(tabId).remove();
+            document.getElementById(`content-${tabId}`).remove();
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Initialize with the first tab
+        addTab('Rammerhead', 'https://this-is-my.isellkids.store');
+    </script>
+</body>
+</html>
+
+
+
+ 
 
     <!DOCTYPE html>
 <html lang="en">
