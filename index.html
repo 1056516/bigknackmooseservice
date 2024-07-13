@@ -1,3 +1,5 @@
+<link rel="shortcut icon" type="image/png" href="https://i.ibb.co/55mjHTS/Big-Stem.png">
+
 <!DOCTYPE html>
 <head>
 <style>
@@ -89,7 +91,7 @@ function login() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Unblocker</title>
+    <title>PlayerVPN</title>
     <style>
         html, body {
             height: 100%;
@@ -100,7 +102,7 @@ function login() {
         .tab-bar {
             display: flex;
             align-items: center;
-            background-color: blue;
+            background-color: black;
             border-bottom: 1px solid #ccc;
             padding: 5px;
             overflow-x: auto;
@@ -223,10 +225,10 @@ function login() {
                     if (response.ok) {
                         document.querySelector('.content.active iframe').src = searchUrl;
                     } else {
-                        alert('Domain not existing');
+                        alert('Url Opening Coming Soon');
                     }
                 })
-                .catch(() => alert('Domain not existing'));
+                .catch(() => alert('Url Opening Coming Soon'));
         }
 
         function addTab(title = 'New Tab', url = 'https://im-not-advertising.6b8t.xyz/uv/service/hvtrs8%2F-wuw%2Cgmoelg.aoo%2F%3Dgus%5Drf%3Dqsn') {
@@ -239,7 +241,7 @@ function login() {
             const tab = document.createElement('div');
             tab.className = 'tab';
             tab.id = tabId;
-            tab.style.backgroundColor = getRandomColor();
+            tab.style.backgroundColor = white();
             tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
             tab.onclick = () => switchTab(tabId, url);
             document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
