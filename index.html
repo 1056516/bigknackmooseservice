@@ -1,92 +1,3 @@
-<link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KWCcd31/Untitled-design.png">
-
-<!DOCTYPE html>
-<head>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-image: url('https://i.ibb.co/X35qh8d/PLAYER.png');
-}
-
-.login-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999; /* make sure the login screen is on top of everything else */
-}
-
-.login-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-form input[type="text"],
-.login-form input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 25px;
-  border: none;
-}
-
-.login-form input[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 25px;
-  border: none;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-.login-form input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-/* ...existing styles... */
-</style>
-</head>
-<body>
-
-<div class="login-container" id="login-container">
-  <div class="login-form">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value="Login" onclick="login()">
-  </div>
-</div>
-
-<!-- ...existing elements... -->
-
-<script>
-function login() {
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  if (username === 'Secret' && password === 'Search') {
-    document.getElementById('login-container').style.display = 'none';
-  } else {
-    alert('Re-insert your username and password... ');
-  }
-}
-/* ...existing scripts... */
-</script>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +5,9 @@ function login() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Service | PlayerVPN</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KWCcd31/Untitled-design.png">
     <style>
+        /* Add your CSS styles here as provided in original message */
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -423,6 +336,15 @@ function login() {
         </div>
         <div class="app-icon" onclick="addTab()">
             <i class="fas fa-search" style="font-size: 24px;"></i>
+        </div>
+        <div class="app-icon" onclick="addTab('TikTok', 'https://c.pluh.store/2faf8eb7c2be4baa912763d6facae2d6/https://www.tiktok.com/')">
+            <i class="fab fa-tiktok" style="font-size: 24px;"></i>
+        </div>
+        <div class="app-icon" onclick="addTab('Google', 'https://c.pluh.store/2faf8eb7c2be4baa912763d6facae2d6/https://www.google.com/?gws_rd=ssl')">
+            <i class="fab fa-google" style="font-size: 24px;"></i>
+        </div>
+        <div class="app-icon" onclick="addTab('GeForce Now', 'https://c.pluh.store/2faf8eb7c2be4baa912763d6facae2d6/https://play.geforcenow.com/games?game-id=46bfab06-d864-465d-9e56-2d9e45cdee0a&lang=en_US&asset-id=01_a49f2653-e1a4-4d6f-88fb-14e46aef1b8f')">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732086.png" alt="GeForce Now" style="width: 24px; height: 24px;">
         </div>
         <div class="status-indicator" id="networkStatus">Network: Checking...</div>
         <div class="status-indicator battery-status" id="batteryStatus">Battery: Checking...</div>
