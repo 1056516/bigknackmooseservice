@@ -1,4 +1,4 @@
-<link rel="shortcut icon" type="image/png" href="https://i.ibb.co/CJnZQBD/Untitled-design-5.png">
+<link rel="shortcut icon" type="image/png" href="https://i.ibb.co/QFdCN55/Power-School-Logos-Vertical-01.webp">
 
 <!DOCTYPE html>
 <head>
@@ -86,175 +86,400 @@ function login() {
 /* ...existing scripts... */
 </script>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayerVPN</title>
+    <title>Home | Schoology</title>
     <style>
-        html, body {
-            height: 100%;
+        body {
             margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('https://i.ibb.co/jL8Cmqz/Player-VPN.png') no-repeat center center fixed;
+            background-size: cover;
+            display: none; /* Hide body initially for loading screen */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 10000; /* Above all other elements */
         }
+
+        .loading-text {
+            margin-bottom: 20px; /* Space between text and loader */
+        }
+
+        .loader {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite; /* Apply spin animation */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .tab-bar {
             display: flex;
             align-items: center;
-            background-color: white;
-            border-bottom: 1px solid #ccc;
+            background-color: #ffffff;
+            border-bottom: 2px solid #ccc;
             padding: 5px;
             overflow-x: auto;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         }
+
         .tab {
-            padding: 10px;
+            padding: 10px 15px;
             margin-right: 5px;
-            background-color: #e1e1e1;
+            background-color: #f0f0f0; /* Default tab color */
             border: 1px solid #ccc;
             border-radius: 4px 4px 0 0;
             cursor: pointer;
             display: flex;
             align-items: center;
             position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s, transform 0.2s;
         }
+
         .tab:hover {
-            background-color: #ddd;
+            background-color: #e0e0e0; /* Change color on hover */
         }
+
         .tab.active {
-            background-color: white;
-            border-bottom: 1px solid white;
-            animation: glow 1s infinite alternate;
+            background-color: #d0d0d0; /* Darker grey for active tab */
+            border-bottom: 2px solid #ccc; /* Keeps the bottom border visible */
         }
+
         .tab .close {
             margin-left: 10px;
             cursor: pointer;
+            color: #777;
+            transition: color 0.3s;
         }
-        .tab-bar .add-tab {
-            padding: 10px;
-            background-color: #e1e1e1;
-            border: 1px solid #ccc;
+
+        .tab .close:hover {
+            color: #ff0000; /* Change color on hover */
+        }
+
+        .add-tab {
+            padding: 10px 15px;
+            background-color: #000; /* Changed to black */
+            border: none;
             border-radius: 4px;
+            color: white;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
         }
-        .tab-bar .add-tab:hover {
-            background-color: #ddd;
+
+        .add-tab:hover {
+            background-color: #333; /* Slightly lighter on hover */
         }
+
         .content-container {
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            margin-top: 50px; /* Adjust this value based on the height of your tab-bar */
-            margin-bottom: 50px; /* Adjust this value based on the height of your toolbar */
+            margin-top: 50px; /* Adjust based on the height of the tab-bar */
+            margin-bottom: 50px; /* Adjust based on the height of the toolbar */
+            height: calc(100vh - 100px); /* Adjust for the tab bar and toolbar height */
+            overflow-y: auto; /* Allow scrolling for content */
         }
+
         .content {
             flex-grow: 1;
             display: none;
+            position: relative;
+            height: 100%; /* Ensures the content takes full height */
         }
+
         .content.active {
             display: block;
         }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
+
         .toolbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 10px;
             background-color: #f9f9f9;
-            border-top: 1px solid #ccc;
+            border-top: 2px solid #ccc;
             position: fixed;
             bottom: 0;
             width: 100%;
             z-index: 1000;
+            border-radius: 10px; /* Added rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Shadow for depth */
         }
-        .search-bar {
-            width: 300px;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        .search-bar:hover {
-            width: 320px;
-        }
-        .search-bar:focus {
-            width: 100%;
-        }
-        .search-button {
-            padding: 10px 20px;
+
+        .app-icon {
+            display: flex;
+            align-items: center;
             margin-left: 10px;
-            background-color: red;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+
+        .time-date {
+            display: flex;
+            align-items: center;
+            background-color: #e0e0e0; /* Light grey background */
+            border-radius: 10px;
+            padding: 5px 10px;
+            margin-left: auto; /* Pushes it to the right */
+            font-size: 14px;
+        }
+
+        .time-date span {
+            margin: 0 5px; /* Space between date and time */
+        }
+
+        .no-tabs-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: none; /* Hide by default */
+        }
+
+        .welcome,
+        .changelog {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome h1,
+        .changelog h1 {
+            margin-top: 0;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            background-color: #e0e0e0; /* Light grey */
+            transition: background-color 0.3s; /* Transition for hover state */
+        }
+
+        .battery-status {
+            color: black; /* Default to black */
+        }
+
+        .battery-status.low {
+            color: red; /* Change to red for low battery */
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #121212;
+            color: white;
+        }
+
+        body.dark-mode .tab-bar {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .tab {
+            background-color: #2e2e2e;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        body.dark-mode .toolbar {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .content {
+            background-color: #2e2e2e;
+        }
+
+        /* Settings styles */
+        .settings-container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-container h1 {
+            margin-top: 0;
+        }
+
+        /* Tab Cloaks */
+        .cloak-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cloak {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .cloak:hover {
+            border-color: #007bff; /* Change border on hover */
+        }
+
+        /* User input styles */
+        .custom-title {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .update-title {
+            margin-top: 10px;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
+            width: 100%;
         }
-        .search-button:hover {
-            background-color: green;
-        }
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
-            }
-            25% {
-                box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
-            }
-            50% {
-                box-shadow: 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 30px #0000ff, 0 0 40px #0000ff;
-            }
-            75% {
-                box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00, 0 0 40px #ffff00;
-            }
-            100% {
-                box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
-            }
+
+        .update-title:hover {
+            background-color: #45a049; /* Darker green on hover */
         }
     </style>
 </head>
+
 <body>
-    <div class="tab-bar" ondblclick="addTab()">
-        <div class="add-tab" onclick="addTab()">+</div>
+    <div class="loading-screen">
+        <div class="loading-text">LOADING: Personalizing for all users!</div>
+        <div class="loader"></div>
     </div>
+
+    <div class="tab-bar" ondblclick="addTab()">
+        <div class="add-tab" onclick="addTab()">
+            <i class="fas fa-plus"></i> New Tab
+        </div>
+    </div>
+
     <div class="content-container"></div>
+
     <div class="toolbar">
-        <input type="text" class="search-bar" placeholder="PlayerVPN, use tabs to unblock chrome">
-        <button class="search-button" onclick="performSearch()">Search</button>
+        <div class="app-icon" onclick="window.open('https://github.com/FlixifyTVisbackformoregithub/-AccessUnlocker-home-schoology', '_blank')">
+            <i class="fab fa-github" style="font-size: 24px;"></i>
+        </div>
+        <div class="app-icon" onclick="addTab()">
+            <i class="fas fa-search" style="font-size: 24px;"></i>
+        </div>
+        <div class="status-indicator" id="networkStatus">Network: Checking...</div>
+        <div class="status-indicator battery-status" id="batteryStatus">Battery: Checking...</div>
+        <div class="time-date" id="timeDate">
+            <span id="currentDate"></span> | <span id="currentTime"></span>
+        </div>
+    </div>
+
+    <div class="no-tabs-message" id="noTabsMessage">
+        Oops, looks like you closed all your tabs!<br> Double tap on the tab bar to open a new tab!
     </div>
 
     <script>
         let tabCounter = 0;
         const maxTabs = 100;
-        let draggedTab = null;
+        const batteryStatus = document.getElementById('batteryStatus');
+        const networkStatus = document.getElementById('networkStatus');
+        let currentTabId = '';
 
-        function performSearch() {
-            const query = document.querySelector('.search-bar').value;
-            const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)*$/;
-            const searchUrl = urlPattern.test(query) ? (query.startsWith('http') ? query : 'http://' + query) : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-            
-if (urlPattern.test(query)) {
-                fetch(searchUrl, { method: 'HEAD' })
-                    .then(response => {
-                        if (response.ok) {
-                            document.querySelector('.content.active iframe').src = searchUrl;
-                        } else {
-                            alert('Domain not existing');
-                        }
-                    })
-                    .catch(() => alert('Domain not existing'));
-            } else {
-                document.querySelector('.content.active iframe').src = searchUrl;
-            }
-        }                    
+        // Show the body after loading
+        window.onload = function () {
+            document.body.style.display = 'block'; // Show main content
+            setTimeout(() => {
+                document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
+            }, Math.random() * (4000) + 4000); // Random delay between 4 to 8 seconds
+            updateDateTime();
+            setInterval(updateDateTime, 1000); // Update time every second
+            checkBattery(); // Check battery status
+            checkNetwork(); // Check network status
+            // Setup event listener for network changes
+            window.addEventListener('online', updateNetworkStatus);
+            window.addEventListener('offline', updateNetworkStatus);
+            // Add keyboard event for opening settings tab
+            window.addEventListener('keydown', (event) => {
+                if (event.altKey && event.key === '0') {
+                    event.preventDefault(); // Prevent default action
+                    addTab('Settings', ''); // Open settings tab
+                }
+            });
 
+            // Add keyboard event listener for opening new tab with Ctrl + Alt + O
+            window.addEventListener('keydown', (event) => {
+                if (event.ctrlKey && event.altKey && event.key === 'o') {
+                    event.preventDefault(); // Prevent any default action
+                    addTab(); // Open a new tab
+                }
+            });
+        };
+
+        function updateDateTime() {
+            const now = new Date();
+            document.getElementById('currentDate').textContent = now.toLocaleDateString(); // Update date
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            }); // Update time
+        }
 
         function addTab(title = 'BrowserPVN', url = 'https://nano-proxy.github.io/') {
             if (tabCounter >= maxTabs) {
@@ -266,22 +491,41 @@ if (urlPattern.test(query)) {
             const tab = document.createElement('div');
             tab.className = 'tab';
             tab.id = tabId;
-            tab.draggable = true;
-            tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')">X</span>`;
+            tab.innerHTML = `<span class="tab-title">${title}</span><span class="close" onclick="closeTab('${tabId}')"><i class="fas fa-times"></i></span>`;
             tab.onclick = () => switchTab(tabId, url);
-            tab.ondragstart = dragStart;
-            tab.ondragover = dragOver;
-            tab.ondrop = drop;
-            tab.ondragend = dragEnd;
+            currentTabId = tabId; // Keep track of the current active tab ID
+
             document.querySelector('.tab-bar').insertBefore(tab, document.querySelector('.add-tab'));
 
             const content = document.createElement('div');
             content.className = 'content';
             content.id = `content-${tabId}`;
-            content.innerHTML = `<iframe src="${url}"></iframe>`;
-            document.querySelector('.content-container').appendChild(content);
+            content.innerHTML = title === 'Settings'
+                ? `<div class="settings-container">
+                    <h1>Settings</h1>
+                    <label>
+                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()"> Dark Mode
+                    </label>
+                    <h2>Tab Cloaks</h2>
+                    <div class="cloak-container">
+                        <img src="https://via.placeholder.com/50" class="cloak" onclick="changeTabIcon('${tabId}', 'https://via.placeholder.com/50')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" class="cloak" onclick="changeTabIcon('${tabId}', 'https://via.placeholder.com/50/ff0000')">
+                        <img src="https://resources.finalsite.net/images/f_auto,q_auto/v1626100427/k12albemarleorg/uj41eppe27bunrvhwnep/PowerSchoolLogos_Vertical-01.png" class="cloak" onclick="changeTabIcon('${tabId}', 'https://via.placeholder.com/50/00ff00')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Classroom_Logo.png" class="cloak" onclick="changeTabIcon('${tabId}', 'https://1000logos.net/wp-content/uploads/2023/01/Google-Docs-logo.png')">
+                        <img src="https://logos-world.net/wp-content/uploads/2023/12/Google-Slides-Logo.png" class="cloak" onclick="changeTabIcon('${tabId}', 'https://via.placeholder.com/50/ffff00')">
+                    </div>
+                    <input type="text" class="custom-title" placeholder="Enter custom title" id="customTitleInput">
+                    <button class="update-title" onclick="updateTabTitle('${tabId}')">Update Title</button>
+                  </div>`
+                : title === 'Changelog'
+                    ? '<div class="changelog"><h1>Changelog</h1><p>v0.0.1: Created PlayerVPN.<br>v0.2.4: Added Toolbar/search & Nicer Tabs</p></div>'
+                    : title === 'Welcome'
+                        ? '<div class="welcome"><h1>Welcome! Press Alt+0 For setting & Ctrl+Alt+o for New tab!</h1><p>To start searching, open a new tab or search through the "BrowserPVN" browser!</p></div>'
+                        : `<iframe src="${url}"></iframe>`;
 
+            document.querySelector('.content-container').appendChild(content);
             switchTab(tabId, url);
+            hideNoTabsMessage(); // Hide the no tabs message when a tab is opened
         }
 
         function switchTab(tabId, url) {
@@ -292,105 +536,97 @@ if (urlPattern.test(query)) {
         }
 
         function closeTab(tabId) {
-            document.getElementById(tabId).remove();
-            document.getElementById(`content-${tabId}`).remove();
+            const tabContainer = document.getElementById(tabId);
+            const content = document.getElementById(`content-${tabId}`);
+            if (tabContainer && content) {
+                tabContainer.remove();
+                content.remove();
+            }
+            displayNoTabsMessage(); // Show message if no tabs are left
         }
 
-        function dragStart(event) {
-            draggedTab = event.target;
-            event.dataTransfer.effectAllowed = 'move';
+        function displayNoTabsMessage() {
+            const message = document.getElementById('noTabsMessage');
+            const tabs = document.querySelectorAll('.tab');
+            if (tabs.length === 0) {
+                message.style.display = 'block'; // Show no tabs message
+            }
         }
 
-        function dragOver(event) {
-            event.preventDefault();
-            event.dataTransfer.dropEffect = 'move';
+        function hideNoTabsMessage() {
+            const message = document.getElementById('noTabsMessage');
+            message.style.display = 'none'; // Hide message
         }
 
-        function drop(event) {
-            event.preventDefault();
-            if (event.target.classList.contains('tab') && event.target !== draggedTab) {
-                const tabBar = document.querySelector('.tab-bar');
-                const tabs = Array.from(tabBar.querySelectorAll('.tab'));
-                const draggedIndex = tabs.indexOf(draggedTab);
-                const targetIndex = tabs.indexOf(event.target);
-                if (draggedIndex > targetIndex) {
-                    tabBar.insertBefore(draggedTab, event.target);
-                } else {
-                    tabBar.insertBefore(draggedTab, event.target.nextSibling);
+        function changeTabIcon(tabId, iconUrl) {
+            const link = document.querySelector(`link[rel="icon"]`);
+            link.href = iconUrl; // Change the favicon in the browser
+        }
+
+        function updateTabTitle(tabId) {
+            const input = document.getElementById('customTitleInput');
+            const newTitle = input.value.trim();
+            if (newTitle) {
+                const tabElement = document.getElementById(tabId);
+                if (tabElement) {
+                    const tabTitle = tabElement.querySelector('.tab-title');
+                    tabTitle.textContent = newTitle;
+                    document.title = newTitle; // Update the title of the document
                 }
             }
         }
 
-        function dragEnd(event) {
-            const tabBar = document.querySelector('.tab-bar');
-            if (!tabBar.contains(event.target)) {
-                tabBar.appendChild(draggedTab);
+        // Check Battery Status
+        function checkBattery() {
+            if (navigator.getBattery) {
+                navigator.getBattery().then(function (battery) {
+                    updateBatteryStatus(battery);
+                    battery.addEventListener('chargingchange', function () {
+                        updateBatteryStatus(battery);
+                    });
+                    battery.addEventListener('levelchange', function () {
+                        updateBatteryStatus(battery);
+                    });
+                });
+            } else {
+                batteryStatus.textContent = "Battery: Not supported";
             }
-            draggedTab = null;
         }
 
-        // Initialize with the first tab
-        addTab('Rammerhead', 'https://c.pluh.store/');
+        function updateBatteryStatus(battery) {
+            const level = Math.round(battery.level * 100);
+            const charging = battery.charging ? " (Charging)" : "";
+            batteryStatus.textContent = `Battery: ${level}%${charging}`;
+            // Set color based on battery level
+            batteryStatus.style.color = level < 21 ? "red" : "black"; // Change color based on battery level
+        }
+
+        // Check Network Status
+        function checkNetwork() {
+            updateNetworkStatus();
+        }
+
+        function updateNetworkStatus() {
+            const status = navigator.onLine ? "Online" : "Offline";
+            const connectionType = navigator.connection ? navigator.connection.effectiveType : "Unavailable";
+            networkStatus.textContent = `Network: ${status} (${connectionType})`;
+        }
+
+        // Toggle Theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Initialize with the welcome page and add other tabs
+        addTab('Welcome', ''); // Welcome page
+        addTab('Changelog', ''); // Changelog as a default tab
+        addTab('Rammerhead', 'https://c.pluh.store/'); // Add Rammerhead tab
+        switchTab('tab-1', ''); // Switch to the welcome tab
     </script>
+
+    <!-- Load Google Fonts and FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </body>
+
 </html>
-
-
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: black;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .movie {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            margin: 10px;
-            border-radius: 10px;
-            background-color: #ffffff;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.5s ease, filter 0.5s ease; /* Added transition for smooth effect */
-        }
-
-        .movie:hover {
-            transform: scale(1.07); /* Enlarges movie on hover */
-            filter: brightness(40%); /* Dimms movie image on hover */
-        }
-
-        .movie img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease, filter 0.6s ease; /* Added transition for smooth effect */
-        }
-
-        .movie-title {
-            position: absolute;
-            bottom: 0;
-            left: 1;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: red;
-            padding: 40px;
-            font-size: 15px;
-            text-align: center;
-            opacity: 0; /* Hide title by default */
-            transition: opacity 0.6s ease; /* Transition for title appearance */
-        }
-
-        .movie:hover .movie-title {
-            opacity: 1; /* Show title on hover */
-        }
